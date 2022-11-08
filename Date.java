@@ -19,52 +19,88 @@ class Date{
         }
         return false;
     }
+    public boolean isSameMonth(Date another){
+        if(this.month==another.getMonth()){
+            return true;
+        }
+        return false;
+    }
+    public boolean isSameYear(Date another){
+        if(this.Year==another.getYear()){
+            return true;
+        }
+        return false;
+    }
 
 
 
 
 
-    public whatMonth(month){
+    public String whatMonth(month){
         switch(month){
             case(1):
-            System.out.println("enero");
+            whatMonth=enero;
             case(2):
-            System.out.println("febrero");
+            whatMonth=febrero;
             case(3):
-            System.out.println("marzo");
+            whatMonth=marzo;
             case(4):
-            System.out.println("abril");
+            whatMonth=abril;
             case(5):
-            System.out.println("mayo");
+            whatMonth=mayo;
             case(6):
-            System.out.println("junio");
+            whatMonth=junio;
             case(7):
-            System.out.println("julio");
+            whatMonth=julio;
             case(8):
-            System.out.println("agosto");
+            whatMonth=agosto;
             case(9):
-            System.out.println("septiembre");
+            whatMonth=septiembre;
             case(10):
-            System.out.println("octubre");
+            whatMonth=octubre;
             case(11):
-            System.out.println("noviembre");
+            whatMonth=noviembre;
             case(12):
-            System.out.println("diciembre");
-            break;
-            System.out.println("Mes no existente");
+            whatMonth=diciembre;
         }
     }
 
 
 
 
-    public howMuchDaysEachMonth(month){
+
+    public int howMuchDaysEachMonth(month){
         switch(month){
             case(1,3,5,7,8,10,12):
+            howMuchDaysEachMonth=31
             case(4,6,9,11):
+            howMuchDaysEachMonth=30
             case(2):
+            howMuchDaysEachMonth=28
             break;
-            
+        }
+    }
+     public boolean isDayValid(Date) {
+        if(this.day>today.howMuchDaysEachMonth() || this.day<=0){
+            return false;
+        }
+        return true;
+    }
+
+
+
+
+
+    public String whatSeasonIsInThisMonth(month) {
+        switch(month) {
+            case(1,2,3):
+            whatSeasonIsInThisMonth=Invierno;
+            case(4,5,6):
+            whatSeasonIsInThisMonth=Primavera;
+            case(7,8,9):
+            whatSeasonIsInThisMonth=Verano;
+            case(10,11,12):
+            whatSeasonIsInThisMonth=Otonio;
         }
     }
 
@@ -72,36 +108,15 @@ class Date{
 
 
 
-    private boolean isDayValid(day, month){
-        switch(month){
-            case(1):
-            if(day>31||day<0){
-
-            }
-            case(2):
-            
-            case(3):
-            
-            case(4):
-            
-            case(5):
-            
-            case(6):
-            
-            case(7):
-            
-            case(8):
-            
-            case(9):
-            
-            case(10):
-            
-            case(11):
-            
-            case(12):
-            
-            break;
+    public monthUntillEndYear(month) {
+        for(int i=month;i<=12;i+1) {
+            System.out.println(whatMonth(i) + " ");
         }
     }
 
+
+
+
+
+    dfdfasdfa
 }
