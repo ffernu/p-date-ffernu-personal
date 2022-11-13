@@ -16,7 +16,7 @@ class Date{
     public boolean isSameDay(Date another){
         if(this.day==another.getDay()){
             return true;
-        }
+        } 
         return false;
     }
     public boolean isSameMonth(Date another){
@@ -26,7 +26,13 @@ class Date{
         return false;
     }
     public boolean isSameYear(Date another){
-        if(this.Year==another.getYear()){
+        if(this.year==another.getYear()){
+            return true;
+        }
+        return false;
+    }
+    public boolean isSame(Date another){
+        if(this.Year==another.getYear() && this.month==another.getMonth() && this.day==another.getDay()){
             return true;
         }
         return false;
@@ -35,42 +41,45 @@ class Date{
 
 
 
-
-    public String whatMonth(month){
-        switch(month){
+    public String whatMonth(){
+        String whatMonth="";
+        switch(this.month){
             case(1):
-            whatMonth=enero;
+            whatMonth="enero";
             case(2):
-            whatMonth=febrero;
+            whatMonth="febrero";
             case(3):
-            whatMonth=marzo;
+            whatMonth="marzo";
             case(4):
-            whatMonth=abril;
+            whatMonth="abril";
             case(5):
-            whatMonth=mayo;
+            whatMonth="mayo";
             case(6):
-            whatMonth=junio;
+            whatMonth="junio";
             case(7):
-            whatMonth=julio;
+            whatMonth="julio";
             case(8):
-            whatMonth=agosto;
+            whatMonth="agosto";
             case(9):
-            whatMonth=septiembre;
+            whatMonth="septiembre";
             case(10):
-            whatMonth=octubre;
+            whatMonth="octubre";
             case(11):
-            whatMonth=noviembre;
+            whatMonth="noviembre";
             case(12):
-            whatMonth=diciembre;
+            whatMonth="diciembre";
+            break;
         }
+        return whatMonth;
     }
 
 
 
 
 
-    public int howMuchDaysEachMonth(month){
-        switch(month){
+    public int howMuchDaysEachMonth(){
+        int howMuchDaysEachMonth=0;
+        switch(this.month){
             case(1,3,5,7,8,10,12):
             howMuchDaysEachMonth=31
             case(4,6,9,11):
@@ -79,9 +88,10 @@ class Date{
             howMuchDaysEachMonth=28
             break;
         }
+        return howMuchDaysEachMonth;
     }
-     public boolean isDayValid(Date) {
-        if(this.day>today.howMuchDaysEachMonth() || this.day<=0){
+     public boolean isDayValid() {
+        if(this.day>howMuchDaysEachMonth() || this.day<=0){
             return false;
         }
         return true;
@@ -91,32 +101,82 @@ class Date{
 
 
 
-    public String whatSeasonIsInThisMonth(month) {
-        switch(month) {
+    public String whatSeasonIsInThisMonth() {
+        String whatSeasonIsInThisMonth="";
+        switch(this.month) {
             case(1,2,3):
-            whatSeasonIsInThisMonth=Invierno;
+            whatSeasonIsInThisMonth="Invierno";
             case(4,5,6):
-            whatSeasonIsInThisMonth=Primavera;
+            whatSeasonIsInThisMonth="Primavera";
             case(7,8,9):
-            whatSeasonIsInThisMonth=Verano;
+            whatSeasonIsInThisMonth="Verano";
             case(10,11,12):
-            whatSeasonIsInThisMonth=Otonio;
+            whatSeasonIsInThisMonth="Otonio";
         }
+        return whatSeasonIsInThisMonth;
     }
 
 
 
 
 
-    public monthUntillEndYear(month) {
-        for(int i=month;i<=12;i+1) {
+    public monthUntillEndYear() {
+        for(int i=this.month;i<=12;i+1) {
             System.out.println(whatMonth(i) + " ");
         }
+    } //el whatMonth(i) es suspicious, mirar a ver como huevos se pone eso bien
+
+
+
+
+
+	public String dateToString() {
+        String dateToString="";
+		StringBuffer salida = new StringBuffer();
+		salida.append(this.day);
+		salida.append(" de " + whatMonth());
+		salida.append(" del anio " + this.year);
+		return salida.dateToString();
     }
 
 
 
 
+    public String monthsSameDays(){
+        String monthsSameDays="";
+        int thisMonthDays= howMuchDaysEachMonth();
+        StringBuffer salida = new StringBuffer();
+        salida.append("Los meses con los mismos dias que el mes " + this.month + " son los meses ");
+        for(int i=1;i<=12;i+1){
+            if(thisMonthDays==howMuchDaysEachMonth(i)){
+               salida.append(i + " ")
+            }
+        }
+        return salida.monthsSameDays();
+    }
 
-    dfdfasdfa
+
+
+
+    public String daysUntilEndMonth(){
+        String daysUntilEndMonth="";
+        int thisMonthDays= howMuchDaysEachMonth();
+        StringBuffer salida=new StringBuffer();
+        salida.append("Las fechas hasta fin de mes son: ");
+        for(int i=this.day;i<=int thisMOnthDays; i+1){
+            salida.append(i + "/" + this.month + "/" + this.year + " ");
+        }
+        return salida.daysUntilEndMonth();
+    }
+
+
+
+
+    public int daysSinceBeginningYear(){
+        int daysSinceBeginningYear=this.day;
+        for(int i=this.month-1;i>0;i-1){
+            daysSinceBeginningYear=daysSinceBeginningYear+ howMuchDaysEachMonth(i)//again, esa i da mal rollo, preguntar si esta bien y rezar para que la solucian que me den sea sencilla 
+        }
+        return daysSinceBeginningYear;
+    }
 }
