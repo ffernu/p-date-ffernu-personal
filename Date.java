@@ -65,7 +65,7 @@ class Date{
 
 
 
-    private String whatMOnth(int month){
+    private String whatMonth(int month){
         String whatMonth="";
         switch(month){
             case(1):
@@ -108,7 +108,7 @@ class Date{
         return whatMonth;
     }
     public String whatMonth(){
-        return this.whatMOnth(this.month);
+        return this.whatMonth(this.month);
     }
 
 
@@ -120,10 +120,12 @@ class Date{
 
 
 
-
     public int howMuchDaysEachMonth(){
+        return this.howMuchDaysEachMonth(this.month);
+    }
+    private int howMuchDaysEachMonth(int month){
         int howMuchDaysEachMonth=0;
-        switch(this.month){
+        switch(month){
             case 1: //next
             case 3: //next
             case 5: //next
@@ -193,11 +195,11 @@ class Date{
 
     public String monthUntillEndYear() {
         String monthUntillEndYear="";
-        StringBuffer salida = new StringBUffer()
-        for(int i=this.month;i<=12;i+1) {
-            salida.append(whatMonth(i) + " ");
+        for(int i=this.month;i<=12;i++) {
+            monthUntillEndYear=monthUntillEndYear + whatMonth(i) + " ";
         }
-    }//Arreglar para que funcione, de aqui para abajo, este incluido
+        return monthUntillEndYear;
+    }
 
 
 
@@ -205,11 +207,8 @@ class Date{
 
 	public String dateToString() {
         String dateToString="";
-		StringBuffer salida = new StringBuffer();
-		salida.append(this.day);
-		salida.append(" de " + whatMonth());
-		salida.append(" del anio " + this.year);
-		return salida.dateToString();
+		dateToString =this.day +" de "+ whatMonth() + " de " + this.year;
+		return dateToString;
     }
 
 
@@ -217,15 +216,13 @@ class Date{
 
     public String monthsSameDays(){
         String monthsSameDays="";
-        int thisMonthDays= howMuchDaysEachMonth();
-        StringBuffer salida = new StringBuffer();
-        salida.append("Los meses con los mismos dias que el mes " + this.month + " son los meses ");
-        for(int i=1;i<=12;i+1){
-            if(thisMonthDays==howMuchDaysEachMonth(i)){
-               salida.append(i + " ")
+        monthsSameDays="Los meses con los mismos dias que el mes " + this.month + " son los meses ";
+        for(int i=1;i<=12;i++){
+            if(howMuchDaysEachMonth()==howMuchDaysEachMonth(i)){
+               monthsSameDays = monthsSameDays + whatMonth(i) + " ";
             }
         }
-        return salida.monthsSameDays();
+        return monthsSameDays;
     }
 
 
@@ -234,12 +231,11 @@ class Date{
     public String daysUntilEndMonth(){
         String daysUntilEndMonth="";
         int thisMonthDays= howMuchDaysEachMonth();
-        StringBuffer salida=new StringBuffer();
-        salida.append("Las fechas hasta fin de mes son: ");
-        for(int i=this.day;i<=int thisMOnthDays; i+1){
-            salida.append(i + "/" + this.month + "/" + this.year + " ");
+        daysUntilEndMonth="Las fechas hasta fin de mes son: ";
+        for(int i=this.day;i<=howMuchDaysEachMonth(); i++){
+            daysUntilEndMonth=daysUntilEndMonth + i + "/" + this.month + "/" + this.year + " ";
         }
-        return salida.daysUntilEndMonth();
+        return daysUntilEndMonth;
     }
 
 
@@ -247,7 +243,7 @@ class Date{
 
     public int daysSinceBeginningYear(){
         int daysSinceBeginningYear=this.day;
-        for(int i=this.month-1;i>0;i-1){
+        for(int i=this.month-1;i>0;i--){
             daysSinceBeginningYear=daysSinceBeginningYear + howMuchDaysEachMonth(i); 
         }
         return daysSinceBeginningYear;
@@ -257,18 +253,25 @@ class Date{
 
 
     public int dayOfTheWeek(int weekDayFirstDayOfYear){
-        int dayOfTheWeek=1;
-        int dayOfTheWeek = (daysSinceBeginningYear() % 7) + weekDayFirstDayOfYear;
+        int dayOfTheWeek = (daysSinceBeginningYear() % 7) + weekDayFirstDayOfYear - 1;
         if(dayOfTheWeek>7){
             dayOfTheWeek= dayOfTheWeek-7;
-            return dayOfTheWeek();
+            return dayOfTheWeek;
         }
-        return dayOfTheWeek();
+        return dayOfTheWeek;
     }
 
 
 
-    public randomDateEqual(){
-        
+    public int randomDateEqual(){
+        int randomDay=0;
+        int randomMonth=0;
+        int randomDateEqual=0;
+        do {
+            randomDay= (int)(Math.random()*31);
+            randomMonth= (int)(Math.random()*12);
+            randomDateEqual= randomDateEqual +1; 
+        } while ((randomDay!=this.day || randomMonth!=this.month)||(randomDay!=this.day && randomMonth!=this.month));
+        return randomDateEqual;
     }
 }

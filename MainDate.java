@@ -12,13 +12,14 @@ public class MainDate{
     //    System.out.println(today.isDayValid());
     //    System.out.println(today.whatSeasonIsInThisMonth());
 
-        System.out.println(today.monthUntillEndYear()); //me llego por aquí comprobando funcionamientos
+    //    System.out.println(today.monthUntillEndYear());
     //    System.out.println(today.dateToString());
     //    System.out.println(today.monthsSameDays());
     //    System.out.println(today.daysUntilEndMonth());
     //    System.out.println(today.daysSinceBeginningYear());
 
-    //    System.out.println(today.dayOfTheWeek(3));
+    //    System.out.println(today.dayOfTheWeek(6));
+        System.out.println(today.randomDateEqual());
 
         
 
